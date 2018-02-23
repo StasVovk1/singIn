@@ -1,0 +1,7 @@
+﻿.input-error {
+    border-color: #ff5555;
+}
+
+#error-messedg{
+    display: none;
+}
