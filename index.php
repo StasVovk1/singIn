@@ -1,13 +1,6 @@
 <?php 
 	session_start();
-
 	include 'main.php';
-	if (isset($_POST['exit'])){
-		setcookie("login", $login, -1, "/");
-	  setcookie("password", $password, -1, "/");
-	  unset($_SESSION);
-	}
-
 ?>
 
 

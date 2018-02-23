@@ -2,6 +2,12 @@
 $db_name = 'db.xml';
 error_reporting( E_ERROR );
 
+if (isset($_POST['exit'])){
+	setcookie("login", $login, -1, "/");
+	setcookie("password", $password, -1, "/");
+	unset($_SESSION);
+}
+
 
 // провера на содержание Cookie и авторизация
 if (isset($_POST['checkCookie'])){
@@ -122,8 +128,13 @@ if (isset($_POST['loginIn'])){
 		$_SESSION['password'] = $password;
 		$_SESSION['name'] = $answer['name'];
 	}else {
-		$messedg['error'] = 1;
-		$messedg['mess'] = 'Неверно введет логин или пароль! ';
+		if (!$answer['login']){
+			$messedg['error'] = 1;
+			$messedg['mess'] = 'Пользователь с данным Логином отсутствует! ';
+		}else {
+			$messedg['error'] = 1;
+			$messedg['mess'] = 'Неверно введет логин или пароль ! ';
+		}
 	}
 
 	echo json_encode($messedg);
